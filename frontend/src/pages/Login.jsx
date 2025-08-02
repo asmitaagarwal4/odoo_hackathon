@@ -82,13 +82,13 @@ function Login() {
   return (
     <>
       {/* <div className="min-h-screen bg-white flex items-center justify-center p-4"> */}
-        <div className="w-lvw max-w-md">
+        <div className="w-lvw max-w-md text-black">
         <div className="text-center mb-8">
           <div className="flex items-center justify-center mb-4">
             <HelpCircle className="h-8 w-8 text-sage-500 mr-2" />
             <h1 className="text-2xl font-bold text-sage-800">QuickDesk</h1>
           </div>
-          <p className="text-muted-foreground">Simple help desk solution</p>
+          <p className="text-black">Simple help desk solution</p>
         </div>
         <Card className="border-sage-200 shadow-lg w-full  hover-lift">
           <CardHeader className="space-y-1">
@@ -100,13 +100,13 @@ function Login() {
               <TabsList className="grid w-full grid-cols-2 mb-6 bg-sage-50">
                 <TabsTrigger
                   value="login"
-                  className="data-[state=active]:bg-[#52796f] data-[state=active]:text-white bg-sage-50"
+                  className="data-[state=active]:bg-sage-50 data-[state=active]:text-white bg-[#52796f] text-white"
                 >
                   Login
                 </TabsTrigger>
                 <TabsTrigger
                   value="register"
-                  className="data-[state=active]:bg-[#52796f] data-[state=active]:text-white"
+                  className="data-[state=active]:bg-sage-50 data-[state=active]:text-white bg-[#52796f] text-white"
                 >
                   Register
                 </TabsTrigger>
@@ -146,9 +146,9 @@ function Login() {
                         onClick={() => setShowPassword(!showPassword)}
                       >
                         {showPassword ? (
-                          <EyeOff className="h-4 w-4 text-muted-foreground" />
+                          <EyeOff className="h-4 w-4 text-white" />
                         ) : (
-                          <Eye className="h-4 w-4 text-muted-foreground" />
+                          <Eye className="h-4 w-4 text-white" />
                         )}
                       </Button>
                     </div>
@@ -226,9 +226,9 @@ function Login() {
                         onClick={() => setShowPassword(!showPassword)}
                       >
                         {showPassword ? (
-                          <EyeOff className="h-4 w-4 text-muted-foreground" />
+                          <EyeOff className="h-4 w-4 text-white" />
                         ) : (
-                          <Eye className="h-4 w-4 text-muted-foreground" />
+                          <Eye className="h-4 w-4 text-white" />
                         )}
                       </Button>
                     </div>
