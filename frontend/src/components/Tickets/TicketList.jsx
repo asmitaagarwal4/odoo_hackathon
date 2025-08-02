@@ -24,7 +24,6 @@ const TicketList = ({ tickets, title, onSelectTicket, onRefresh }) => {
               <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Subject</th>
               <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Status</th>
               <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Reporter</th>
-              <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Assigned To</th>
               <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Created At</th>
               <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Actions</th>
             </tr>
@@ -36,7 +35,7 @@ const TicketList = ({ tickets, title, onSelectTicket, onRefresh }) => {
                 <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">{ticket.subject}</td>
                 <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">{ticket.status}</td>
                 <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">{ticket.reporter_name || ticket.reporter_id}</td>
-                <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">{ticket.assignee_name || 'Unassigned'}</td>
+                {/* <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">{ticket.assignee_name || 'Unassigned'}</td> */}
                 <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">{new Date(ticket.created_at).toLocaleDateString()}</td>
                 <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
                   <button
