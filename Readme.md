@@ -77,10 +77,16 @@ cd ../frontend
 
 2. Create a file named `.env.local` inside this folder and add the following environment variables:
 
-> **Note**: Storing secrets like JWT_SECRET on the client-side is not a recommended security practice. These variables should be treated as public API keys.
+> **Note**: The `JWT_SECRET` is required for authentication to work properly. The database configuration variables (`DB_*`) are also recommended for proper connection setup. The Cloudinary variables are optional but required if you want file attachment functionality to work in the application.
 
 ```env
-JWT_SECRET=<YOUR_JWT_SECRET>
+APP_PORT=3000
+DB_PORT=3306
+DB_HOST=localhost
+DB_USER=root
+DB_PASSWORD=root
+DB_NAME=database
+JWT_SECRET=1234
 CLOUDINARY_CLOUD_NAME=<your_cloudinary_cloud_name>
 CLOUDINARY_API_KEY=<your_cloudinary_api_key>
 CLOUDINARY_API_SECRET=<your_cloudinary_api_secret>
