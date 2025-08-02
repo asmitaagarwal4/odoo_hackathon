@@ -1,18 +1,30 @@
 const express = require('express');
 const router = express.Router();
+const multer = require('multer');
+const upload = multer({ storage: multer.memoryStorage() });
+
 const { authMiddleware, isAgent } = require('../middleware/authMiddleware');
-const { createTicket, getMyTickets, getAllTickets, updateTicketStatus } = require('../controllers/ticketController');
+const {
+  createTicket,
+  getMyTickets,
+  getAllTickets,
+  updateTicketStatus,
+  getTicketById,
+  assignTicket,
+  addComment,
+  voteTicket,
+} = require('../controllers/ticketController');
 
-// End User and Agent can create tickets [cite: 15, 46]
-router.post('/', authMiddleware, createTicket);
-
-// End User can view their own tickets [cite: 19]
+// Ticket creation and viewing
+router.post('/', authMiddleware, upload.single('attachment'), createTicket);
 router.get('/my', authMiddleware, getMyTickets);
-
-// Agent can view all tickets [cite: 22, 43]
 router.get('/', authMiddleware, isAgent, getAllTickets);
+router.get('/:ticket_id', authMiddleware, getTicketById);
 
-// Agent can update ticket status [cite: 23]
+// Ticket actions
 router.put('/:ticket_id/status', authMiddleware, isAgent, updateTicketStatus);
+router.put('/:ticket_id/assign', authMiddleware, isAgent, assignTicket);
+router.post('/:ticket_id/comments', authMiddleware, addComment);
+router.post('/:ticket_id/vote', authMiddleware, voteTicket);
 
 module.exports = router;

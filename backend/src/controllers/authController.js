@@ -62,4 +62,17 @@ const loginUser = async (req, res) => {
   }
 };
 
-module.exports = { registerUser, loginUser };
+const getMyProfile = async (req, res) => {
+  try {
+    const [user] = await db.query('SELECT id, name, email, role, created_at FROM users WHERE id = ?', [req.user.id]);
+    if (user.length === 0) {
+      return res.status(404).json({ msg: 'User not found' });
+    }
+    res.json(user[0]);
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).send('Server Error');
+  }
+};
+
+module.exports = { registerUser, loginUser, getMyProfile };

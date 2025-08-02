@@ -1,4 +1,5 @@
 const express = require('express');
+const cors = require('cors');
 const app = express();
 // const initializeDatabase = require('./config/databaseInit'); // Your DB setup file
 const dbPool = require('./src/db/db.connection'); // Your main DB connection pool
@@ -8,6 +9,8 @@ require('dotenv').config({ path: './.env' });
 
 const authRoutes = require('./src/routes/authRoutes');
 const ticketRoutes = require('./src/routes/ticketRoutes');
+const adminRoutes = require('./src/routes/adminRoutes');
+const categoryRoutes = require('./src/routes/categoryRoutes');
 
 
 
@@ -16,12 +19,16 @@ const DATABASE_NAME = process.env.DB_NAME || 'database'; // Get database name fo
 
 // Middleware
 app.use(express.json());
+app.use(cors());
 
 
 
 // Routes
 app.use('/api/auth', authRoutes);
 app.use('/api/tickets', ticketRoutes);
+app.use('/api/admin', adminRoutes);
+app.use('/api/categories', categoryRoutes);
+
 
 
 // ... other middleware like CORS, body-parser, etc.
