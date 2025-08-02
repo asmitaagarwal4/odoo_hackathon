@@ -1,17 +1,26 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
+"use client"
+import React from "react"
 import './App.css'
+import { Routes, Route, Link } from 'react-router-dom';
+import Login from './pages/Login';
+// import AboutPage from './pages/AboutPage';
+// import NotFoundPage from './pages/NotFoundPage';
+
+
 
 function App() {
-  const [count, setCount] = useState(0)
+
 
   return (
     <>
-      <div className='container bg-black'> 
-        Hello World!
+      <Routes>
+        {/* The `element` prop takes the component to render */}
+        {/* <Route path="/" element={<HomePage />} /> */}
+        <Route path="/login" element={<Login />} />
 
-      </div>
+        {/* This is the catch-all route for 404 Not Found pages */}
+        {/* <Route path="*" element={<NotFoundPage />} /> */}
+      </Routes>
     </>
   )
 }
