@@ -84,7 +84,7 @@ export default function Dashboard() {
           <h1 style={{ fontSize: 28, fontWeight: "bold" }}>Dashboard</h1>
           <p style={{ color: "#888" }}>Manage your support tickets</p>
         </div>
-        <Link to="/tickets/create" style={{ background: "#52796f", color: "#000", padding: "8px 16px", borderRadius: 6, textDecoration: "none", display: "flex", alignItems: "center" }}>
+        <Link to="/createticket" style={{ background: "#52796f", color: "#000", padding: "8px 16px", borderRadius: 6, textDecoration: "none", display: "flex", alignItems: "center" }}>
           <Plus style={{ marginRight: 8 }} size={18} />
           Create Ticket
         </Link>
