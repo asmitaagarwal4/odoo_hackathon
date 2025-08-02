@@ -26,6 +26,12 @@ const priorityConfig = {
 }
 
 export default function Dashboard() {
+  const location = useLocation();
+  const userId = location.state?.user.id;
+  const userRole = location.state?.user.role;
+  const token = location.state?.user.token;
+
+
   const [searchTerm, setSearchTerm] = useState("")
   const [statusFilter, setStatusFilter] = useState("all")
   const [categoryFilter, setCategoryFilter] = useState("all")
@@ -192,12 +198,12 @@ export default function Dashboard() {
                       fontSize: 12,
                       background: ticket.status === "open" ? "#dbeafe"
                         : ticket.status === "in-progress" ? "#fef9c3"
-                        : ticket.status === "resolved" ? "#dcfce7"
-                        : "#f1f5f9",
+                          : ticket.status === "resolved" ? "#dcfce7"
+                            : "#f1f5f9",
                       color: ticket.status === "open" ? "#2563eb"
                         : ticket.status === "in-progress" ? "#eab308"
-                        : ticket.status === "resolved" ? "#22c55e"
-                        : "#888",
+                          : ticket.status === "resolved" ? "#22c55e"
+                            : "#888",
                       display: "inline-flex",
                       alignItems: "center",
                       gap: 4
@@ -213,12 +219,12 @@ export default function Dashboard() {
                       fontSize: 12,
                       background: ticket.priority === "low" ? "#dcfce7"
                         : ticket.priority === "medium" ? "#fef9c3"
-                        : ticket.priority === "high" ? "#fee2e2"
-                        : "#fca5a5",
+                          : ticket.priority === "high" ? "#fee2e2"
+                            : "#fca5a5",
                       color: ticket.priority === "low" ? "#22c55e"
                         : ticket.priority === "medium" ? "#eab308"
-                        : ticket.priority === "high" ? "#ef4444"
-                        : "#b91c1c"
+                          : ticket.priority === "high" ? "#ef4444"
+                            : "#b91c1c"
                     }}>
                       {priorityConfig[ticket.priority].label}
                     </span>

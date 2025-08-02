@@ -7,12 +7,14 @@ import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Eye, EyeOff, HelpCircle } from "lucide-react"
 import { Link } from "react-router-dom";
+import { jwtDecode } from "jwt-decode";
+import { useNavigate } from "react-router-dom";
 
 function Login() {
   // Login form state
   const [loginEmail, setLoginEmail] = useState("");
   const [loginPassword, setLoginPassword] = useState("");
-
+  const navigate = useNavigate();
   // Register form state
   const [registerFirstName, setRegisterFirstName] = useState("");
   const [registerLastName, setRegisterLastName] = useState("");
@@ -34,12 +36,24 @@ function Login() {
           password: loginPassword,
         }),
       });
+
       if (!res.ok) {
         const err = await res.json();
         throw new Error(err.message || "Login failed");
       }
+      // console.log("Login response:", res);
+      const data = await res.json();
+      const token = data.token;
+      const decoded = jwtDecode(token);
+      const user = {
+        id: decoded.user.id,
+        role: decoded.user.role,
+        token: token
+      };
+
       setIsLoading(false);
       alert("Logged in!");
+       navigate("/dashboard", { state: { user } });
       // ...handle successful login (e.g., redirect, store token)...
     } catch (err) {
       setIsLoading(false);
@@ -65,19 +79,29 @@ function Login() {
           password: registerPassword,
         }),
       });
-      const data = await res.json();
+      // const data = await res.json();
       if (!res.ok) {
         const err = await res.json();
         throw new Error(err.message || "Registration failed");
       }
+      const data = await res.json();
+      const token = data.token;
+      const decoded = jwtDecode(token);
+      const user = {
+        id: decoded.user.id,
+        role: decoded.user.role,
+        token:token
+      };
       setIsLoading(false);
       alert("Account created!");
+      navigate("/dashboard", { state: { user } });
       // ...handle successful registration...
     } catch (err) {
       setIsLoading(false);
       alert("Registration failed: " + err.message);
     }
   };
+
 
   return (
     <>
