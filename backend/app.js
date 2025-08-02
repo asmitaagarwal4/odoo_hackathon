@@ -1,23 +1,9 @@
-// require('dotenv').config();
-// const express = require('express');
-// const app = express();
 
-// app.get('/', (req, res) => {
-//     res.json({
-//         message: 'Hello World!'
-//     })
-// });
-
-// app.listen(process.env.APP_PORT || 3000, () => {
-//     console.log(`Server is running on port ${process.env.APP_PORT || 3000}`);
-// });
-
-// backend/server.js
 
 const express = require('express');
 const app = express();
-const initializeDatabase = require('./config/databaseInit'); // Your DB setup file
-const dbPool = require('./config/db.connection'); // Your main DB connection pool
+// const initializeDatabase = require('./config/databaseInit'); // Your DB setup file
+const dbPool = require('./db/db.connection'); // Your main DB connection pool
 
 // Load environment variables (make sure .env is in backend folder)
 require('dotenv').config({ path: './.env' });
@@ -30,16 +16,21 @@ app.use(express.json());
 // ... other middleware like CORS, body-parser, etc.
 
 // Connect to the database and initialize it on startup
-initializeDatabase().then(() => {
-  // Database is ready, now start the Express server
-  app.listen(PORT, () => {
+// initializeDatabase().then(() => {
+//   // Database is ready, now start the Express server
+//   app.listen(PORT, () => {
+//     console.log(`Server is running on port ${PORT}`);
+//     console.log(`Access your app at http://localhost:${PORT}`);
+//   });
+// }).catch(err => {
+//   console.error("Failed to initialize database and start server:", err);
+//   process.exit(1); // Exit if DB setup fails
+// });
+
+app.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}`);
     console.log(`Access your app at http://localhost:${PORT}`);
   });
-}).catch(err => {
-  console.error("Failed to initialize database and start server:", err);
-  process.exit(1); // Exit if DB setup fails
-});
 
 // --- New Route to Fetch Table Names ---
 app.get('/api/tables', (req, res) => {
